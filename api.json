@@ -1,0 +1,46 @@
+{"observations":
+[
+    {
+        "stationID":"KCTSTORR28",
+        "tz":"America/New_York",
+        "obsTimeUtc":"2023-10-26T03:59:48Z",
+        "obsTimeLocal":"2023-10-25 23:59:48",
+        "epoch":1698292788,
+        "lat":41.812869,
+        "lon":-72.31193,
+        "solarRadiationHigh":281.74,
+        "uvHigh":4.0,
+        "winddirAvg":242,
+        "humidityHigh":99,
+        "humidityLow":1,
+        "humidityAvg":51,
+        "qcStatus":0,
+    "metric":
+        {
+        "tempHigh":26,
+        "tempLow":3,
+        "tempAvg":13,
+        "windspeedHigh":3,
+        "windspeedLow":0,
+        "windspeedAvg":0,
+        "windgustHigh":8,
+        "windgustLow":0,
+        "windgustAvg":0,
+        "dewptHigh":23,
+        "dewptLow":-41,
+        "dewptAvg":1,
+        "windchillHigh":26,
+        "windchillLow":3,
+        "windchillAvg":13,
+        "heatindexHigh":28,
+        "heatindexLow":3,
+        "heatindexAvg":14,
+        "pressureMax":null,
+        "pressureMin":null,
+        "pressureTrend":null,
+        "precipRate":0.00,
+        "precipTotal":0.00
+        }
+    }
+]
+}

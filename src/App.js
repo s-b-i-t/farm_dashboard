@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { getCurrentDateString, handleScroll, DisplayData } from "./utility";
+import { getCurrentDateString, handleScroll, DisplayData, DisplayStationInfo } from "./utility";
 import graph_img from "./images/graph_img.png";
 import weather_dash from "./images/weather_dash.png";
 
 const App = () => {
-  //Obtain current weather data with API
 
 
 
   const [weatherData, setWeatherData] = useState(null);
-  const [currentWeather, setCurrentWeather] = useState(null);
+  const [stationInfo, setStationInfo] = useState(null);
 
   // Fetch weather data on mount
   useEffect(() => {
@@ -24,7 +23,10 @@ const App = () => {
         const weatherResponse = await fetch(api_url);
         const weatherJson = await weatherResponse.json();
         setWeatherData(weatherJson.observations[0].metric);
-        setCurrentWeather(weatherJson.observations[0]);
+        setStationInfo(weatherJson.observations[0]);
+
+        console.log(weatherJson.observations)
+        
       } catch (error) {
         console.error("Failed to fetch weather data", error);
       }
@@ -35,38 +37,46 @@ const App = () => {
 
 
     //navbar scrolling
-    const currentWeatherRef = useRef(null);
+    const stationInfoRef = useRef(null);
     const weatherDataRef = useRef(null);
     const ApiRef = useRef(null);
 
   return (
     <div className="container">
-      <div className="header-section">
-        <h1>Farm Dashboard</h1>
-      </div>
-      <div id="weather-data" ref={weatherDataRef}>
-        <h2>Weather Data</h2>
 
-        <img className="large-img" src={graph_img} alt="Weather Data" />
-      </div>
       <div className="navbar">
         <button onClick={() => handleScroll(weatherDataRef)}>
           Weather Data
         </button>
-        <button onClick={() => handleScroll(currentWeatherRef)}>
+        <button onClick={() => handleScroll(stationInfoRef)}>
           Current Weather
         </button>
         <button onClick={() => handleScroll(ApiRef)}>Api Section</button>
       </div>
-      <div id="current-weather" className="section" ref={currentWeatherRef}>
+
+
+      <div className="header-section">
+        <h1>Farm Dashboard</h1>
+      </div>
+      <div id="weather-data" ref={weatherDataRef}>
+        
+        <h2>Weather Data</h2>
+
+        <img className="large-img" src={graph_img} alt="Weather Data" />
+      </div>
+      
+      <div id="current-weather" className="section" ref={stationInfoRef}>
         <h2>Current Weather</h2>
         <img className="large-img" src={weather_dash} alt="Current Weather" />
       </div>
-
+      
       <div id='API DATA' className='section' ref={ApiRef}>
         <h2>API DATA</h2>
         <DisplayData weatherData={weatherData} />
+        <h2> STATION INFO</h2>
+        <DisplayStationInfo stationInfo={stationInfo} />
       </div>
+      
     </div>
   );
 };
