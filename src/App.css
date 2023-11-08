@@ -10,8 +10,8 @@
 }
 
 .large-img {
-  width: 1200px;
-  height: auto;
+  max-width: 100%; 
+  height: auto; 
   margin-top: 20px;
 }
 
