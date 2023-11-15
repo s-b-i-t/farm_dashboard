@@ -7,6 +7,7 @@ const DataPlots = ({ avgTmp30Days }) => {
 
     useEffect(() => {
         if (avgTmp30Days && avgTmp30Days.length > 0) {
+            
             // If there's an existing chart instance, destroy it
             if (chartInstanceRef.current) {
                 chartInstanceRef.current.destroy();
@@ -14,7 +15,7 @@ const DataPlots = ({ avgTmp30Days }) => {
 
             const ctx = chartRef.current.getContext('2d');
             const chartInstance = new Chart(ctx, {
-                type: 'line', // or 'bar', 'pie', etc.
+                type: 'line', 
                 data: {
                     labels: avgTmp30Days.map((_, index) => `Day ${index + 1}`),
                     datasets: [{
