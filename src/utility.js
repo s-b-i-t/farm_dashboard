@@ -21,10 +21,37 @@ function parseDate(){
   return `${month}-${day}-${year}`
 }
 
+export function getPreviousTemps(days_ago){
+  // let cur = getCurrentDateString()
+
+  //*** FOR NOW */
+  var cur = "20231030"
+
+  let year = cur.slice(0,4)
+  let month = cur.slice(4,6)
+  let day = cur.slice(6,8)
+  
+  if (day - days_ago < 1){
+    month = parseInt(month) - 1
+    if (month < 10){
+      month = `0${month}`
+    }
+
+    day = 30 + (day - days_ago)
+  }
+
+  
+  let prev_day = parseInt(day) - days_ago
+  console.log( `${year}${month}${prev_day}`)
+
+  
+  return `${year}${month}${prev_day}`
+}
+
 export function DisplayData({ weatherData }) {
   return (
     <div> 
-    <h3> Current Date: {parseDate() }</h3>
+    <h5> Current Date: {parseDate() }</h5>
     <p>High Temperature: {weatherData?.tempHigh}°C</p>
     <p>Low Temperature: {weatherData?.tempLow}°C</p>
     <p>Average Temperature: {weatherData?.tempAvg}°C</p>
