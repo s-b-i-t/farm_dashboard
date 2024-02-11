@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import  {parseDate}  from './utility.js'; 
 
 const DataPlots = ({ avgTmp30Days }) => {
     const chartRef = useRef(null);
@@ -8,7 +9,14 @@ const DataPlots = ({ avgTmp30Days }) => {
     useEffect(() => {
         if (avgTmp30Days && avgTmp30Days.length > 0) {
             
-            // If there's an existing chart instance, destroy it
+            
+            const today = new Date();
+            const labels = avgTmp30Days.map((_, index) => {
+                const date = new Date(today);
+                date.setDate(today.getDate() - index);
+                return parseDate(date).slice(0, -5);
+            }).reverse(); 
+
             if (chartInstanceRef.current) {
                 chartInstanceRef.current.destroy();
             }
@@ -17,7 +25,7 @@ const DataPlots = ({ avgTmp30Days }) => {
             const chartInstance = new Chart(ctx, {
                 type: 'line', 
                 data: {
-                    labels: avgTmp30Days.map((_, index) => `Day ${index + 1}`),
+                    labels: labels,
                     datasets: [{
                         label: 'Average Temperature',
                         data: avgTmp30Days,
@@ -35,7 +43,7 @@ const DataPlots = ({ avgTmp30Days }) => {
                 }
             });
 
-            // Save the chart instance to the ref
+
             chartInstanceRef.current = chartInstance;
         }
 

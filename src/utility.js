@@ -13,13 +13,13 @@ export const handleScroll = (ref) => {
 };
 
 
-function parseDate(){
-  let cur = getCurrentDateString()
-  let year = cur.slice(0,4)
-  let month = cur.slice(4,6)
-  let day = cur.slice(6,8)
-  return `${month}-${day}-${year}`
+export function parseDate(date = new Date()) {
+  let year = date.getFullYear();
+  let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JavaScript
+  let day = date.getDate().toString().padStart(2, '0');
+  return `${month}-${day}-${year}`;
 }
+
 
 export function getPreviousTemps(days_ago){
   // let cur = getCurrentDateString()

@@ -11,7 +11,7 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [stationInfo, setStationInfo] = useState(null);
   const [avgTmp30Days, setAvgTmp30Days] = useState(null);
-
+  
   
 
   // Fetch weather data on mount
@@ -30,6 +30,8 @@ const App = () => {
 
         let tmp_lst = [];
 
+        // Retrieve avg temps for past i days
+        
         for (let i = 0; i < 5; i++){
           let prev_day = getPreviousTemps(i);
           let prev_url = `https://api.weather.com/v2/pws/history/daily?stationId=KCTSTORR28&format=json&units=m&date=${prev_day}&apiKey=${api_key}`;
