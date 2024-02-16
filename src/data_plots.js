@@ -3,13 +3,15 @@ import Chart from 'chart.js/auto';
 import  {parseDate}  from './utility.js'; 
 
 const DataPlots = ({ avgTmp30Days }) => {
+
+    // prolly get rid of this
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
 
+    
     useEffect(() => {
         if (avgTmp30Days && avgTmp30Days.length > 0) {
-            
-            
+                    
             const today = new Date();
             const labels = avgTmp30Days.map((_, index) => {
                 const date = new Date(today);
