@@ -6,11 +6,7 @@ import { getCurrentDateString, handleScroll,   getPreviousTemps } from "./utilit
 import  DisplayWeatherData  from "./weather_data.js";
 import  DisplayStationInfo  from "./station_info.js";
 import  DataPlots from "./data_plots.js";
-<<<<<<< HEAD
-//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-=======
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
->>>>>>> c47687d8df04714067eee8cf5c8520936bd9afeb
 const App = () => {
 
 
@@ -53,6 +49,7 @@ const App = () => {
         setWeatherData(weatherJson.observations[0].metric);
         setStationInfo(weatherJson.observations[0]);
         setAvgTmp30Days(tempData.map(data => data.observations[0].metric.tempAvg));
+        
       } 
       catch (error) 
       {
