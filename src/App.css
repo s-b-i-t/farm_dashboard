@@ -1,0 +1,53 @@
+.container {
+  text-align: center;
+  background-color: #f7f9fc;
+}
+
+.header-section {
+  background-color: #16213e;
+  color: #A8E6CF;
+  padding: 20px;
+}
+
+.large-img {
+  max-width: 100%; 
+  height: auto; 
+  margin-top: 20px;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #16213e; /* Same as header-section */
+  overflow: auto;
+}
+
+.navbar button {
+  float: left;
+  display: block;
+  color: #A8E6CF; /* Same as header-section text */
+  text-align: center;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.navbar button:hover {
+  background-color: #0f3460;
+  color: #ffffff;
+}
+
+.section {
+  margin: 50px;
+  padding: 50px;
+  background-color: #e8e8e8;
+}
+
+.weather-data{
+  margin: 50px;
+  padding: 50px;
+  background-color: #e8e8e8;
+}
