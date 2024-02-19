@@ -1,8 +1,9 @@
 import React from 'react';
 
-function DisplayStationInfo({stationInfo}) {
+const DisplayStationInfo = ({stationInfo}) => {
     return (
       <div>
+        <h1>Station Information</h1>
         { <p>Station ID: {stationInfo?.stationID}</p> }
         { <p>Time Zone: {stationInfo?.tz}</p> }
         { <p>Observation Time (UTC): {stationInfo?.obsTimeUtc}</p> }

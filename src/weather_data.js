@@ -4,7 +4,7 @@ import {parseDate} from './utility.js';
 
 
 
-function DisplayWeatherData({ weatherData }) {
+const DisplayWeatherData = ({ weatherData }) =>{
     return (
       <div> 
       <h5> Current Date: {parseDate()}</h5>

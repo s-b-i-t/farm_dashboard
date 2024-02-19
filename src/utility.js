@@ -8,7 +8,7 @@ export function getCurrentDateString() {
   return `${year}${month}${day}`;
 }
 
-
+// unnecessary at the moment
 export const handleScroll = (ref) => {
   ref.current.scrollIntoView({ behavior: 'smooth' });
 };
