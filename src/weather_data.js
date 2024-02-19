@@ -9,29 +9,79 @@ const DisplayWeatherData = ({ weatherData }) =>{
       <div> 
         <h1> Weather Data </h1>
       <h5> Current Date: {parseDate()}</h5>
-      <p>High Temperature: {weatherData?.tempHigh}°C</p>
-      <p>Low Temperature: {weatherData?.tempLow}°C</p>
-      <p>Average Temperature: {weatherData?.tempAvg}°C</p>
-      <p>Wind Speed High: {weatherData?.windspeedHigh} </p> 
-      <p>Wind Speed Low: {weatherData?.windspeedLow} </p> 
-      <p>Wind Speed Avg: {weatherData?.windspeedAvg} </p> 
-      <p>Wind Gust High: {weatherData?.windgustHigh} </p> 
-      <p>Wind Gust Low: {weatherData?.windgustLow} </p> 
-      <p>Wind Gust Avg: {weatherData?.windgustAvg} </p> 
-      <p>Dew Point High: {weatherData?.dewptHigh} </p> 
-      <p>Dew Point Low: {weatherData?.dewptLow} </p> 
-      <p>Dew Point Avg: {weatherData?.dewptAvg} </p> 
-      <p>Wind Chill High: {weatherData?.windchillHigh} </p> 
-      <p>Wind Chill Low: {weatherData?.windchillLow} </p>
-      <p>Wind Chill Avg: {weatherData?.windchillAvg} </p> 
-      <p>Heat Index High: {weatherData?.heatindexHigh} </p>
-      <p>Heat Index Low: {weatherData?.heatindexLow} </p>
-      <p>Heat Index Avg: {weatherData?.heatindexAvg} </p>
-      <p>Pressure High: {weatherData?.pressureHigh} </p>
-      <p>Pressure Low: {weatherData?.pressureLow} </p>
-      <p>Pressure Avg: {weatherData?.pressureAvg} </p>
-      <p>precipRate: {weatherData?.precipRate}</p>
-      <p>precipTotal: {weatherData?.precipTotal}</p>
+
+        <div class="weather-container">
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Temperature</h4>
+            </div>
+            <div>
+              <p>High: {weatherData?.tempHigh}°C</p>
+              <p>Low: {weatherData?.tempLow}°C</p>
+              <p>Average: {weatherData?.tempAvg}°C</p>
+            </div>
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Wind Speed</h4>
+            </div>
+            <p>High: {weatherData?.windspeedHigh} kph? </p>
+            <p>Low: {weatherData?.windspeedLow} </p> 
+            <p>Average: {weatherData?.windspeedAvg} </p> 
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Wind Gust</h4>
+            </div>
+            <p>High: {weatherData?.windgustHigh} </p> 
+            <p>Low: {weatherData?.windgustLow} </p> 
+            <p>Average: {weatherData?.windgustAvg} </p> 
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Dew Point</h4>
+            </div>
+            <p>High: {weatherData?.dewptHigh}°C </p> 
+            <p>Low: {weatherData?.dewptLow}°C </p>
+            <p>Average: {weatherData?.dewptAvg}°C </p>  
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Wind Chill</h4>
+            </div>
+            <p>High: {weatherData?.windchillHigh}°C </p>
+            <p>Low: {weatherData?.windchillLow}°C </p>
+            <p>Average: {weatherData?.windchillAvg}°C </p> 
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Heat Index</h4>
+            </div>
+            <p>High: {weatherData?.heatindexHigh}°C </p>
+            <p>Low: {weatherData?.heatindexLow}°C </p>
+            <p>Average: {weatherData?.heatindexAvg}°C </p> 
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Pressure</h4>
+            </div>
+            <p>High: {weatherData?.pressureHigh} </p>
+            <p>Low: {weatherData?.pressureLow} </p>
+            <p>Average: {weatherData?.pressureAvg} </p>
+          </div>
+          
+        </div>
+        <div class="weather-container">
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Precipitation</h4>
+            </div>
+            <p>precipRate: {weatherData?.precipRate}</p>
+            <p>precipTotal: {weatherData?.precipTotal}</p>
+          </div>
+        </div>
+
+        
     </div>
     );
   }

@@ -48,8 +48,26 @@
   background-color: #e8e8e8;
 }
 
-.weather-data{
-  margin: 50px;
-  padding: 50px;
+.weather-container{
+  border: 1px solid #000;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.weather-group{
   background-color: #e8e8e8;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  text-align: center;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.weather-header{
+  background-color: #badbff;
+  border-bottom: 1px solid #666;
+  box-sizing: border-box;
+  padding: 10px;
 }
