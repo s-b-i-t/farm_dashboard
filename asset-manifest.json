@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/farm_dashboard/static/css/main.799f5f1c.css",
-    "main.js": "/farm_dashboard/static/js/main.9d31a864.js",
+    "main.css": "/farm_dashboard/static/css/main.bddaa0b0.css",
+    "main.js": "/farm_dashboard/static/js/main.c21b7efc.js",
     "index.html": "/farm_dashboard/index.html",
-    "main.799f5f1c.css.map": "/farm_dashboard/static/css/main.799f5f1c.css.map",
-    "main.9d31a864.js.map": "/farm_dashboard/static/js/main.9d31a864.js.map"
+    "main.bddaa0b0.css.map": "/farm_dashboard/static/css/main.bddaa0b0.css.map",
+    "main.c21b7efc.js.map": "/farm_dashboard/static/js/main.c21b7efc.js.map"
   },
   "entrypoints": [
-    "static/css/main.799f5f1c.css",
-    "static/js/main.9d31a864.js"
+    "static/css/main.bddaa0b0.css",
+    "static/js/main.c21b7efc.js"
   ]
 }
