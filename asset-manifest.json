@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/farm_dashboard/static/css/main.652010bf.css",
-    "main.js": "/farm_dashboard/static/js/main.e004da0b.js",
-    "static/media/weather_dash.png": "/farm_dashboard/static/media/weather_dash.c37414c766a13f65f2ec.png",
-    "static/media/graph_img.png": "/farm_dashboard/static/media/graph_img.6cff36682535e649e6c3.png",
+    "main.css": "/farm_dashboard/static/css/main.799f5f1c.css",
+    "main.js": "/farm_dashboard/static/js/main.9d31a864.js",
     "index.html": "/farm_dashboard/index.html",
-    "main.652010bf.css.map": "/farm_dashboard/static/css/main.652010bf.css.map",
-    "main.e004da0b.js.map": "/farm_dashboard/static/js/main.e004da0b.js.map"
+    "main.799f5f1c.css.map": "/farm_dashboard/static/css/main.799f5f1c.css.map",
+    "main.9d31a864.js.map": "/farm_dashboard/static/js/main.9d31a864.js.map"
   },
   "entrypoints": [
-    "static/css/main.652010bf.css",
-    "static/js/main.e004da0b.js"
+    "static/css/main.799f5f1c.css",
+    "static/js/main.9d31a864.js"
   ]
 }
