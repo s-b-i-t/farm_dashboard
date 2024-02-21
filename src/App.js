@@ -11,14 +11,15 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [stationInfo, setStationInfo] = useState(null);
   const [avgTmp30Days, setAvgTmp30Days] = useState(null);
-  
+  const [soilTempPrediction, setSoilTempPrediction] = useState(null); // Add this line to define soilTempPrediction
+
   
 
   // Fetch weather data on mount
   useEffect(() => {
     let api_key = process.env.REACT_APP_API_KEY;
     let current_date = 20231025
-    let api_url = `https://api.weather.com/v2/pws/history/daily?stationId=KCTSTORR28&format=json&units=m&date=${current_date}&apiKey=${api_key}`;
+    let api_url = `https://api.weather.com/v2/pws/history/daily?stationId=KCTSTORR28&format=json&units=m&date=${current_date}&apiKey=1b2a5cb281f64582aa5cb281f6d582ac`;
 
 
     const fetchData = async () => {
@@ -30,19 +31,28 @@ const App = () => {
 
         let tmp_lst = [];
 
-        // Retrieve avg temps for past i days
-        
-        for (let i = 0; i < 5; i++){
-          let prev_day = getPreviousTemps(i);
-          let prev_url = `https://api.weather.com/v2/pws/history/daily?stationId=KCTSTORR28&format=json&units=m&date=${prev_day}&apiKey=${api_key}`;
-          const prevResponse = await fetch(prev_url);
-          const prevJson = await prevResponse.json();
-          tmp_lst.push(prevJson.observations[0].metric.tempAvg);   
-        }
+        // Retrieve avg temps for past i day
 
-        setAvgTmp30Days(tmp_lst)
 
+        const flaskApiUrl = "http://127.0.0.1:5000/predict";  // Update with your Flask API endpoint
+        const flaskResponse = await fetch(flaskApiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors",
+          body: JSON.stringify({
+            // Pass any required data for prediction
+            airt: weatherJson.observations[0].metric.tempAvg,
+            prec: weatherJson.observations[0].metric.precipTotal,
+            slrt: weatherJson.observations[0].metric.solarRadiationHigh,
+            wspd: weatherJson.observations[0].metric.windspeedAvg,
+          }),
+        });
         
+        console.log(flaskResponse)
+        const flaskJson = await flaskResponse.json();
+        setSoilTempPrediction(flaskJson);
       } catch (error) {
         console.error("Failed to fetch weather data", error);
       }
@@ -80,8 +90,26 @@ const App = () => {
         
         <h2>Current Farm Data</h2>
         <DisplayData weatherData={weatherData} />
+        <div id="soil-temp-prediction">
+        <h2>Soil Temperature Prediction</h2>
+{soilTempPrediction && (
+  <div>
+    <p>Warm Season Prediction:</p>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <li>Air Temperature: {soilTempPrediction.warm_season.air_temperature}</li>
+      <li>Soil Temperature: {soilTempPrediction.warm_season.soil_temperature}</li>
+    </ul>
+    <p>Cold Season Prediction:</p>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <li>Air Temperature: {soilTempPrediction.cold_season.air_temperature}</li>
+      <li>Soil Temperature: {soilTempPrediction.cold_season.soil_temperature}</li>
+    </ul>
+  </div>
+)}
 
-      
+        
+        </div>
+
       
       </div>
       
@@ -90,6 +118,7 @@ const App = () => {
         <DataPlots avgTmp30Days={avgTmp30Days} /> 
       
       </div>
+      
       
       <div id='API DATA' className='section' ref={ApiRef}>
         <h2>API DATA</h2>
