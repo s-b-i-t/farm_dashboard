@@ -24,7 +24,7 @@ const App = () => {
     const fetchData = async () => {
       try {
 
-        let api_key = process.env.REACT_APP_API_KEY;
+        let api_key = "1b2a5cb281f64582aa5cb281f6d582ac";
         let current_date = getCurrentDateString();
         const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
         const STATION_ID = 'KCTSTORR28';
@@ -35,13 +35,6 @@ const App = () => {
 
         let promises = [];
 
-        for (let i = 0; i < 5; i++) {
-
-          // Retrieve avg temps for past i days
-          let prev_day = getPreviousTemps(i)
-          let prev_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${prev_day}&apiKey=${api_key}`;
-          promises.push(fetch(prev_url));
-        }
         // promises returns an array of promises
         const responses = await Promise.all(promises)
         // promise called on each response to get the json data
