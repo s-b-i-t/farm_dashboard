@@ -24,7 +24,7 @@ const App = () => {
     const fetchData = async () => {
       try {
 
-        let api_key = "1b2a5cb281f64582aa5cb281f6d582ac";
+        let api_key = process.env.REACT_APP_API_KEY;
         let current_date = getCurrentDateString();
         const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
         const STATION_ID = 'KCTSTORR28';
