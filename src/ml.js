@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from 'react-chartjs-2';
 
 const App = () => {
@@ -12,17 +12,18 @@ const App = () => {
 
   useEffect(() => {
     if (weatherData && soilTempPrediction) {
-      const labels = ["Current Data", "Warm Season Prediction", "Cold Season Prediction"];
+      const labels = ["Current Data", "Warm Season Prediction", "Cold Season Prediction", "Neural Network Prediction"];
       const currentData = weatherData.tempAvg;
       const warmSeasonPrediction = soilTempPrediction.warm_season.soil_temperature;
       const coldSeasonPrediction = soilTempPrediction.cold_season.soil_temperature;
+      const nnPrediction = soilTempPrediction.nn_prediction.soil_temperature;
 
       const data = {
         labels: labels,
         datasets: [
           {
             label: "Soil Temperature",
-            data: [currentData, warmSeasonPrediction, coldSeasonPrediction],
+            data: [currentData, warmSeasonPrediction, coldSeasonPrediction, nnPrediction],
             fill: false,
             borderColor: "rgba(75,192,192,1)",
             pointRadius: 5,
@@ -79,6 +80,10 @@ const App = () => {
               <ul style={{ listStyleType: 'none', padding: 0 }}>
                 <li>Air Temperature: {soilTempPrediction.cold_season.air_temperature}</li>
                 <li>Soil Temperature: {soilTempPrediction.cold_season.soil_temperature}</li>
+              </ul>
+              <p>Neural Network Prediction:</p>
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                <li>Soil Temperature: {soilTempPrediction.nn_prediction.soil_temperature}</li>
               </ul>
             </div>
           )}
