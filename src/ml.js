@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Line } from 'react-chartjs-2';
-
+import { getCurrentDateString } from "./utility";
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [soilTempPrediction, setSoilTempPrediction] = useState(null);
@@ -12,22 +12,24 @@ const App = () => {
 
   useEffect(() => {
     if (weatherData && soilTempPrediction) {
-      const labels = ["Current Data", "Warm Season Prediction", "Cold Season Prediction", "Neural Network Prediction"];
-      const currentData = weatherData.tempAvg;
-      const warmSeasonPrediction = soilTempPrediction.warm_season.soil_temperature;
-      const coldSeasonPrediction = soilTempPrediction.cold_season.soil_temperature;
-      const nnPrediction = soilTempPrediction.nn_prediction.soil_temperature;
+      const labels = ["Current Data", "Linear Regression Prediction", "Neural Network Prediction"];
+      const currentData = ((weatherData.tempAvg)*9/5) + 32; // turn into farenheit
+      console.log("Hello World")
+      //const warmSeasonPrediction = soilTempPrediction.warm_season.soil_temperature_lr;
+      const lrPrediction = soilTempPrediction.season.soil_temperature_lr;
+      //const coldSeasonPrediction = soilTempPrediction.cold_season.soil_temperature_lr;
+      const nnPrediction = soilTempPrediction.nn_prediction.soil_temperature_nn;
 
       const data = {
         labels: labels,
         datasets: [
           {
             label: "Soil Temperature",
-            data: [currentData, warmSeasonPrediction, coldSeasonPrediction, nnPrediction],
+            data: [currentData, lrPrediction, nnPrediction],
             fill: false,
             borderColor: "rgba(75,192,192,1)",
-            pointRadius: 5,
-            pointHoverRadius: 8,
+            pointRadius: 10,
+            pointHoverRadius: 13,
           },
         ],
       };
@@ -38,7 +40,13 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const weatherResponse = await fetch("https://api.weather.com/v2/pws/history/daily?stationId=KCTSTORR28&format=json&units=m&date=20231025&apiKey=1b2a5cb281f64582aa5cb281f6d582ac");
+      let api_key = "1b2a5cb281f64582aa5cb281f6d582ac";
+      let current_date = getCurrentDateString();
+      const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
+      const STATION_ID = 'KCTSTORR28';
+      let api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${current_date}&apiKey=${api_key}`;
+      
+      const weatherResponse = await fetch(api_url);
       const weatherJson = await weatherResponse.json();
       setWeatherData(weatherJson.observations[0].metric);
 
@@ -50,7 +58,7 @@ const App = () => {
         },
         mode: "cors",
         body: JSON.stringify({
-          airt: weatherJson.observations[0].metric.tempAvg,
+          airt: ((weatherJson.observations[0].metric.tempAvg)*9/5) + 32, // turn into farenheit
           prec: weatherJson.observations[0].metric.precipTotal,
           slrt: weatherJson.observations[0].metric.solarRadiationHigh,
           wspd: weatherJson.observations[0].metric.windspeedAvg,
@@ -71,19 +79,20 @@ const App = () => {
           <h2>Soil Temperature Prediction</h2>
           {soilTempPrediction && (
             <div>
-              <p>Warm Season Prediction:</p>
+              <b>Air Temperature: {soilTempPrediction.season.air_temperature}° F</b>
+              
+              
               <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li>Air Temperature: {soilTempPrediction.warm_season.air_temperature}</li>
-                <li>Soil Temperature: {soilTempPrediction.warm_season.soil_temperature}</li>
+                <b>Linear Regression Season Prediction:</b>
+                <li>Season: {soilTempPrediction.season.season_type}</li>
+                <li>Soil Temperature: {soilTempPrediction.season.soil_temperature_lr}° F</li>
               </ul>
-              <p>Cold Season Prediction:</p>
+              
+              
+              
               <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li>Air Temperature: {soilTempPrediction.cold_season.air_temperature}</li>
-                <li>Soil Temperature: {soilTempPrediction.cold_season.soil_temperature}</li>
-              </ul>
-              <p>Neural Network Prediction:</p>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li>Soil Temperature: {soilTempPrediction.nn_prediction.soil_temperature}</li>
+                <b>Neural Network Prediction:</b>
+                <li>Soil Temperature: {soilTempPrediction.nn_prediction.soil_temperature_nn}° F</li>
               </ul>
             </div>
           )}
