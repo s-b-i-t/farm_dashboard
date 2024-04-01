@@ -1,10 +1,6 @@
+//weather_data.js
 import React from 'react';
 import {parseDate} from './utility.js';
-
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-
 
 const DisplayWeatherData = ({ weatherData }) =>{
     return (
