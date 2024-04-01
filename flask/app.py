@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import pickle
 import pandas as pd
+import joblib
 from datetime import datetime
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +35,10 @@ def predict():
     wspd = request_data.get('wspd', 0)
     # Prepare data for prediction
     new_df = pd.DataFrame({'airt': [airt], 'prec': [prec], 'slrt': [slrt], 'wspd': [wspd]})
+    Y_scaler_NN = joblib.load('Y_scaler_NN')
+    X_scaler_NN = joblib.load('X_scaler_NN')
+
+    X_new_df_scaled = X_scaler_NN.transform(new_df)
 
     # Linear Regression Model Predictions
     soil_temp_warm = LRmodel_warm.predict(new_df)
@@ -42,9 +47,10 @@ def predict():
     soil_temp_cold = soil_temp_cold[0]
 
     # Neural Network Model Prediction
-    nn_predictions = NNModel_Daily.predict(new_df)
-    soil_temp_nn = nn_predictions[0]
-    
+
+    nn_predictions = NNModel_Daily.predict(X_new_df_scaled)
+    soil_temp_nn = Y_scaler_NN.inverse_transform(nn_predictions[0].reshape(-1, 1))
+    print('\n\n\n', soil_temp_nn, '\n\n\n\n')
     current_month = datetime.now().month
 
     if current_month in [1,2,3,10,11,12]:
