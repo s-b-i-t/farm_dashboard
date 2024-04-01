@@ -12,10 +12,11 @@ const App = () => {
 
   useEffect(() => {
     if (weatherData && soilTempPrediction) {
-      const labels = ["Current Data", "Linear Regression Prediction", "Neural Network Prediction"];
+      const labels = ["Actual Temp", "Linear Regression Prediction", "Neural Network Prediction"];
       const currentData = ((weatherData.tempAvg)*9/5) + 32; // turn into farenheit
       console.log("Hello World")
       //const warmSeasonPrediction = soilTempPrediction.warm_season.soil_temperature_lr;
+      const soiltemp = soilTempPrediction.season.actual_temp;
       const lrPrediction = soilTempPrediction.season.soil_temperature_lr;
       //const coldSeasonPrediction = soilTempPrediction.cold_season.soil_temperature_lr;
       const nnPrediction = soilTempPrediction.nn_prediction.soil_temperature_nn;
@@ -25,7 +26,7 @@ const App = () => {
         datasets: [
           {
             label: "Soil Temperature",
-            data: [currentData, lrPrediction, nnPrediction],
+            data: [soiltemp, lrPrediction, nnPrediction],
             fill: false,
             borderColor: "rgba(75,192,192,1)",
             pointRadius: 10,
@@ -79,7 +80,11 @@ const App = () => {
           <h2>Soil Temperature Prediction</h2>
           {soilTempPrediction && (
             <div>
-              <b>Air Temperature: {soilTempPrediction.season.air_temperature}° F</b>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              <b>Actual Soil Temperature: {soilTempPrediction.season.actual_temp}° F</b>
+              <li>Air Temperature: {soilTempPrediction.season.air_temperature}° F</li>
+            </ul>
+              
               
               
               <ul style={{ listStyleType: 'none', padding: 0 }}>
