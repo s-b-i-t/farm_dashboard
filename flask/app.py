@@ -4,6 +4,9 @@ import pickle
 import pandas as pd
 import joblib
 from datetime import datetime
+import requests
+import os
+
 app = Flask(__name__)
 CORS(app)
 
@@ -45,20 +48,60 @@ def predict():
     soil_temp_cold = LRmodel_cold.predict(new_df)
     soil_temp_warm = soil_temp_warm[0]
     soil_temp_cold = soil_temp_cold[0]
+    # API URL
+    url = "https://api.ecowitt.net/api/v3/device/history"
+    ecowitt_key = '0bc4e178-29b5-4208-9147-2c8725b9bea2'
+    # Parameters for the API request
+    
+    now = str(datetime.now())
+    begin = now[:10] + ' 00:00:00'
+    end = now[:10] + ' 23:59:59'
+    params = {
+        'application_key': '189DFA99311E08E814B19574C3AEE44F',
+        'api_key': ecowitt_key,
+        'start_date': begin, 
+        'end_date': end,
+        'mac': '7C:87:CE:BE:A8:3F',
+        'call_back': 'temp_ch1'
+    } #need to update date
 
-    # Neural Network Model Prediction
+    # Make the request
+    response = requests.get(url, params=params)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the JSON response
+        data = response.json()
+
+        # Get the temperature data
+        temperature_data = data['data']['temp_ch1']['temperature']['list']
+        
+        # Find the most recent temperature report
+        most_recent_timestamp = max(temperature_data.keys())
+        most_recent_temperature = temperature_data[most_recent_timestamp]
+        
+        # Print the result
+        print(f"Most recent temperature report:")
+        print(f"Timestamp: {most_recent_timestamp}")
+        print(f"Temperature: {most_recent_temperature} °F")
+        #print(type(most_recent_temperature))
+    else:
+        print(f"Failed to retrieve data. Status code: {response.status_code}")
+        # Neural Network Model Prediction
 
     nn_predictions = NNModel_Daily.predict(X_new_df_scaled)
     soil_temp_nn = Y_scaler_NN.inverse_transform(nn_predictions[0].reshape(-1, 1))
     print('\n\n\n', soil_temp_nn, '\n\n\n\n')
     current_month = datetime.now().month
 
+    print(datetime.now())
     if current_month in [1,2,3,10,11,12]:
         predictions = {
             'season': {
                 'season_type': 'Cold',
                 'air_temperature': int(airt),
-                'soil_temperature_lr': int(soil_temp_cold)
+                'soil_temperature_lr': int(soil_temp_cold),
+                'actual_temp': int(float(most_recent_temperature))
             
             },
             'nn_prediction': {
@@ -71,7 +114,8 @@ def predict():
             'season': {
                 'season_type': 'Warm',
                 'air_temperature': int(airt),
-                'soil_temperature_lr': int(soil_temp_warm)
+                'soil_temperature_lr': int(soil_temp_warm),
+                'actual_temp': int(float(most_recent_temperature))
             
             },
             'nn_prediction': {
