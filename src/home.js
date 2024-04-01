@@ -1,3 +1,5 @@
+//home.js
+
 const HomePage = () => {
   return (
     <div>

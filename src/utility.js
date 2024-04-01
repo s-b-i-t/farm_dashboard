@@ -1,11 +1,12 @@
-
+//utility.js
 export function getCurrentDateString() {
   const now = new Date();
   const year = now.getFullYear();
   const month = (now.getMonth() + 1).toString().padStart(2, '0');
   const day = now.getDate().toString().padStart(2, '0');
 
-  return `${year}${month}${day}`;
+  return "20240313"
+  // return `${year}${month}${day}`;
 }
 
 export const handleScroll = (ref) => {
@@ -22,10 +23,7 @@ export function parseDate(date = new Date()) {
 
 
 export function getPreviousTemps(days_ago){
-  // let cur = getCurrentDateString()
-
-  //*** FOR NOW */
-  var cur = "20231030"
+  let cur = getCurrentDateString()
 
   let year = cur.slice(0,4)
   let month = cur.slice(4,6)
@@ -42,8 +40,6 @@ export function getPreviousTemps(days_ago){
 
   
   let prev_day = parseInt(day) - days_ago
-  console.log( `${year}${month}${prev_day}`)
-
   
   return `${year}${month}${prev_day}`
 }

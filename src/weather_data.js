@@ -1,8 +1,6 @@
+//weather_data.js
 import React from 'react';
 import {parseDate} from './utility.js';
-
-
-
 
 const DisplayWeatherData = ({ weatherData }) =>{
     return (

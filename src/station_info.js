@@ -1,3 +1,4 @@
+//station_info.js
 import React from 'react';
 
 const DisplayStationInfo = ({stationInfo}) => {
