@@ -26,6 +26,12 @@ const App = () => {
           {
             label: "Soil Temperature",
             data: [currentData, warmSeasonPrediction, coldSeasonPrediction],
+            backgroundColor: [  // Specify the background colors for each bar
+              'rgba(255, 206, 86, 0.6)', // Yellow
+              'rgba(255, 99, 132, 0.6)', // Red
+              'rgba(54, 162, 235, 0.6)', // Blue
+            
+            ],
             fill: false,
             borderColor: "rgba(75,192,192,1)",
             pointRadius: 5,
@@ -68,21 +74,30 @@ const App = () => {
 
   return (
     <div className="container">
+      <h1>Soil Temperature Prediction</h1>
       <div id="weather-data">
         <div id="soil-temp-prediction">
-          <h2>Soil Temperature Prediction</h2>
+          
           {soilTempPrediction && (
-            <div>
-              <p>Warm Season Prediction:</p>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li>Air Temperature: {soilTempPrediction.warm_season.air_temperature}</li>
-                <li>Soil Temperature: {soilTempPrediction.warm_season.soil_temperature}</li>
-              </ul>
-              <p>Cold Season Prediction:</p>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li>Air Temperature: {soilTempPrediction.cold_season.air_temperature}</li>
-                <li>Soil Temperature: {soilTempPrediction.cold_season.soil_temperature}</li>
-              </ul>
+            <div class="weather-container">
+              <div class="weather-group">
+                <div class="weather-header">
+                  <h4>Warm Season Prediction:</h4>
+                </div>
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
+                  <li>Air Temperature: {soilTempPrediction.warm_season.air_temperature}</li>
+                  <li>Soil Temperature: {soilTempPrediction.warm_season.soil_temperature}</li>
+                </ul>
+              </div>
+              <div class="weather-group">
+                <div class="weather-header">
+                  <h4>Cold Season Prediction:</h4>
+                </div>
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
+                  <li>Air Temperature: {soilTempPrediction.cold_season.air_temperature}</li>
+                  <li>Soil Temperature: {soilTempPrediction.cold_season.soil_temperature}</li>
+                </ul>
+              </div>
             </div>
           )}
 

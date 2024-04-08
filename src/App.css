@@ -26,6 +26,13 @@ h4, h5, h6 {
   font-family: var(--md-sys-typescale-title-font);
 }
 
+.image-container {
+  max-width: 100%; /* Image will resize to fit its container */
+  max-height: 100%; /* Image will resize to fit its container */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .container {
   text-align: center;
   background-color: #f7f9fc;

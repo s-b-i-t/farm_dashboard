@@ -5,7 +5,7 @@ export function getCurrentDateString() {
   const month = (now.getMonth() + 1).toString().padStart(2, '0');
   const day = now.getDate().toString().padStart(2, '0');
 
-  return "20240313"
+  return "20240408"
   // return `${year}${month}${day}`;
 }
 
