@@ -3,18 +3,25 @@ import Chart from 'chart.js/auto';
 import { parseDate } from './utility.js';
 
 const plotOptions = [
-  { value: 'temperature', label: 'Temperature' },
-  { value: 'windSpeed', label: 'Wind Speed' },
-  { value: 'windGust', label: 'Wind Gust' },
-  { value: 'dewPoint', label: 'Dew Point' },
-  { value: 'windChill', label: 'Wind Chill' },
-  { value: 'heatIndex', label: 'Heat Index' },
+  { value: 'temperature', label: 'Temperature' , unit: '°C'},
+  { value: 'windSpeed', label: 'Wind Speed', unit: 'km/h' },
+  { value: 'windGust', label: 'Wind Gust' , unit: 'km/h'},
+  { value: 'dewPoint', label: 'Dew Point', unit: '°C'},
+  { value: 'windChill', label: 'Wind Chill', unit: '°C'},
+  { value: 'heatIndex', label: 'Heat Index', unit: '°C'},
+  { value: 'pressure', label: 'Pressure', unit: 'hPa'},
+  { value: 'precipitation', label: 'Precipitation', unit: 'mm'},
 ];
 
 const DataPlots = ({ temperatures }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
+
+  const getYAxisLabel = (plot) => {
+    const option = plotOptions.find(option => option.value === plot);
+    return option && option.unit ? `(${option.unit})` : 'Value';
+  };
 
   useEffect(() => {
     if (temperatures.length > 0 && temperatures[0].length > 0) {
@@ -39,8 +46,18 @@ const DataPlots = ({ temperatures }) => {
         options: {
           scales: {
             y: {
-              beginAtZero: true
-            }
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: getYAxisLabel(selectedPlot)
+              }
+            },
+            x : {
+                title: {
+                    display: true,
+                    text: 'Date'
+                }
+                }
           }
         }
       });
@@ -69,6 +86,8 @@ const DataPlots = ({ temperatures }) => {
         dewPoint: { indices: [9, 10, 11], labels: ['High Dew Point', 'Low Dew Point', 'Avg Dew Point'] },
         windChill: { indices: [12, 13, 14], labels: ['High Wind Chill', 'Low Wind Chill', 'Avg Wind Chill'] },
         heatIndex: { indices: [15, 16, 17], labels: ['High Heat Index', 'Low Heat Index', 'Avg Heat Index'] },
+        pressure: { indices: [18, 19 , 20], labels: ['High Pressure', 'Low Pressure', 'Avg Pressure'] },
+        precipitation: { indices: [21, 22], labels: ['Precipitation Rate', 'Precipitation Total'] },
     };
 
     const currentPlot = plotTypes[plot] || { indices: [], labels: [] };
@@ -88,12 +107,14 @@ const DataPlots = ({ temperatures }) => {
   return (
     <>
       <h1> Previous 30 Day Data </h1>
-      <select value={selectedPlot} onChange={e => setSelectedPlot(e.target.value)}>
+      <select id="plotSelect" value={selectedPlot} onChange={e => setSelectedPlot(e.target.value)}>
         {plotOptions.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
       </select>
-      <canvas ref={chartRef} />
+      <div style={{ maxWidth: '90%', margin: 'auto' }}>
+        <canvas ref={chartRef} />
+      </div>
     </>
   );
 };
