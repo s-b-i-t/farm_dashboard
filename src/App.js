@@ -41,6 +41,7 @@ const App = () => {
   
         // promises returns an array of promises
         const responses = await Promise.all(promises);
+        
         // promise called on each response to get the json data
         const data = (await Promise.all(responses.map(res => res.json()))).reverse(); // Reverse to start from the oldest to most recent
       
