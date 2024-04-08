@@ -41,7 +41,7 @@ const App = () => {
 
         let promises = [];
 
-        for (let i = 1; i < 3; i++) {
+        for (let i = 1; i < 30; i++) {
           let date = getPreviousTemps(i); 
           let api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${date}&apiKey=${api_key}`;
           promises.push(fetch(api_url));
@@ -56,29 +56,29 @@ const App = () => {
         setStationInfo(weatherJson.observations[0]);
         setTempratures(tempData.map(data => {
           return [
-            data.observations[0]?.metric?.tempHigh ?? null,
-            data.observations[0]?.metric?.tempLow ?? null,
-            data.observations[0]?.metric?.tempAvg ?? null,
-            data.observations[0]?.metric?.windSpeedHigh ?? null,
-            data.observations[0]?.metric?.windSpeedLow ?? null,
-            data.observations[0]?.metric?.windSpeedAvg ?? null,
-            data.observations[0]?.metric?.windgustHigh ?? null,
-            data.observations[0]?.metric?.windgustLow ?? null,
-            data.observations[0]?.metric?.windgustAvg ?? null,
-            data.observations[0]?.metric?.dewptHigh ?? null,
-            data.observations[0]?.metric?.dewptLow ?? null,
-            data.observations[0]?.metric?.dewptAvg ?? null,
-            data.observations[0]?.metric?.windchillHigh ?? null,
-            data.observations[0]?.metric?.windchillLow ?? null,
-            data.observations[0]?.metric?.windchillAvg ?? null,
-            data.observations[0]?.metric?.heatindexHigh ?? null,
-            data.observations[0]?.metric?.heatindexLow ?? null,
-            data.observations[0]?.metric?.heatindexAvg ?? null,
-            data.observations[0]?.metric?.pressureMax ?? null,
-            data.observations[0]?.metric?.pressureMin ?? null,
-            data.observations[0]?.metric?.pressureTrend ?? null,
-            data.observations[0]?.metric?.precipRate ?? null,
-            data.observations[0]?.metric?.precipTotal ?? null
+            data.observations[0]?.metric?.tempHigh ?? null, //0
+            data.observations[0]?.metric?.tempLow ?? null, //1
+            data.observations[0]?.metric?.tempAvg ?? null, //2
+            data.observations[0]?.metric?.windSpeedHigh ?? null, //3
+            data.observations[0]?.metric?.windSpeedLow ?? null,  //4
+            data.observations[0]?.metric?.windSpeedAvg ?? null,  //5
+            data.observations[0]?.metric?.windgustHigh ?? null,  //6
+            data.observations[0]?.metric?.windgustLow ?? null,  //7
+            data.observations[0]?.metric?.windgustAvg ?? null,  //8
+            data.observations[0]?.metric?.dewptHigh ?? null,    //9
+            data.observations[0]?.metric?.dewptLow ?? null,   //10
+            data.observations[0]?.metric?.dewptAvg ?? null,   //11
+            data.observations[0]?.metric?.windchillHigh ?? null, //12
+            data.observations[0]?.metric?.windchillLow ?? null,  //13
+            data.observations[0]?.metric?.windchillAvg ?? null, //14
+            data.observations[0]?.metric?.heatindexHigh ?? null, //15
+            data.observations[0]?.metric?.heatindexLow ?? null, //16
+            data.observations[0]?.metric?.heatindexAvg ?? null, // 17
+            data.observations[0]?.metric?.pressureMax ?? null, // 18
+            data.observations[0]?.metric?.pressureMin ?? null,  //19
+            data.observations[0]?.metric?.pressureTrend ?? null, //20
+            data.observations[0]?.metric?.precipRate ?? null,  //21
+            data.observations[0]?.metric?.precipTotal ?? null  //22
 
           ];
            

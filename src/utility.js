@@ -5,8 +5,8 @@ export function getCurrentDateString() {
   const month = (now.getMonth() + 1).toString().padStart(2, '0');
   const day = now.getDate().toString().padStart(2, '0');
 
-  return "20240313"
-  // return `${year}${month}${day}`;
+  // return "20240313"
+  return `${year}${month}${day}`;
 }
 
 export const handleScroll = (ref) => {
@@ -22,27 +22,18 @@ export function parseDate(date = new Date()) {
 }
 
 
-export function getPreviousTemps(days_ago){
-  let cur = getCurrentDateString()
+export function getPreviousTemps(days_ago) {
+  const cur = new Date(getCurrentDateString().slice(0, 4), getCurrentDateString().slice(4, 6) - 1, getCurrentDateString().slice(6, 8));
+  const prevDay = new Date(cur);
+  prevDay.setDate(cur.getDate() - days_ago);
 
-  let year = cur.slice(0,4)
-  let month = cur.slice(4,6)
-  let day = cur.slice(6,8)
-  
-  if (day - days_ago < 1){
-    month = parseInt(month) - 1
-    if (month < 10){
-      month = `0${month}`
-    }
+  let year = prevDay.getFullYear().toString();
+  let month = (prevDay.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JavaScript
+  let day = prevDay.getDate().toString().padStart(2, '0');
 
-    day = 30 + (day - days_ago)
-  }
-
-  
-  let prev_day = parseInt(day) - days_ago
-  
-  return `${year}${month}${prev_day}`
+  return `${year}${month}${day}`;
 }
+
 
 export function DisplayData({ weatherData }) {
   return (
