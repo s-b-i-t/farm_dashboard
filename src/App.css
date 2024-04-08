@@ -26,11 +26,14 @@ h4, h5, h6 {
   font-family: var(--md-sys-typescale-title-font);
 }
 
-.image-container {
+.image-tile {
   max-width: 100%; /* Image will resize to fit its container */
   max-height: 100%; /* Image will resize to fit its container */
+  display: inline-block; /* Ensure images are displayed horizontally */
+  box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
 }
 
 .container {

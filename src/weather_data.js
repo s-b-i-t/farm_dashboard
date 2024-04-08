@@ -100,25 +100,7 @@ const DisplayWeatherData = ({ weatherData, stationInfo }) =>{
               <p>Average Wind Direction: {checkUndefined(stationInfo?.winddirAvg,"°")}</p>
           </div>
         </div>
-        
-
-        
-        {/* <p>Experimenting...</p>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <Paper style={{ margin: 8, width: 128, height: 128 }} elevation={0} >
-            <Typography variant="body1">Paper 0</Typography>
-          </Paper>
-          <Paper style={{ margin: 8, width: 128, height: 128 }} >
-            <Typography variant="body1">Paper 1</Typography>
-          </Paper>
-          <Paper style={{ margin: 8, width: 128, height: 128 }} elevation={3} >
-            <Typography variant="body1">Paper 3</Typography>
-          </Paper>
-        </div> */}
-            
-        
-        
+    
       </div>
     );
   }
