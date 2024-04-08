@@ -20,7 +20,7 @@ const DataPlots = ({ temperatures }) => {
     const chartInstanceRef = useRef(null);
     const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
 
-    console.log(temperatures[3])
+    console.log(temperatures)
     useEffect(() => {
         if (temperatures[0] && temperatures[0].length > 0) {
             const today = new Date(); 
