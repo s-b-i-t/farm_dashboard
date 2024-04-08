@@ -41,7 +41,7 @@ const App = () => {
   
         // promises returns an array of promises
         const responses = await Promise.all(promises);
-        
+
         // promise called on each response to get the json data
         const data = (await Promise.all(responses.map(res => res.json()))).reverse(); // Reverse to start from the oldest to most recent
       
@@ -61,7 +61,8 @@ const App = () => {
   
         // Flatten the metrics to fit the expected structure for temperatures
         setTempratures(metrics.map((metric) => metric.map((value) => value ?? null)));
-  
+        setStationInfo(data[0].observations[0]);
+
       } catch (error) {
         console.error("Failed to fetch weather data", error);
       }
@@ -75,7 +76,7 @@ const App = () => {
   const weatherDataRef = useRef(null);
   const ApiRef = useRef(null);
 
-  console.log(temperatures)
+
 
   // Add stuff to home page and route to ml page
   return (
