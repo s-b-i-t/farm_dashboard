@@ -3,7 +3,7 @@ import React from 'react';
 
 const DisplayStationInfo = ({stationInfo}) => {
     return (
-      <div>
+      <div className="container">
         <h1>Station Information</h1>
         <div class="weather-container">
           <div class="weather-group">
