@@ -13,12 +13,14 @@ const plotOptions = [
   { value: 'precipitation', label: 'Precipitation' },
 ];
 
+
+
 const DataPlots = ({ temperatures }) => {
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
     const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
 
-
+    console.log(temperatures[3])
     useEffect(() => {
         if (temperatures[0] && temperatures[0].length > 0) {
             const today = new Date(); 
