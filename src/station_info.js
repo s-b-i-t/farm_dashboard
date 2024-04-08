@@ -29,24 +29,6 @@ const DisplayStationInfo = ({stationInfo}) => {
           </div>
         </div>
 
-        <div class="weather-container">
-          <div class="weather-group">
-            <div class="weather-header">
-              <h4>Misc. Weather</h4>
-            </div>
-              <p>Solar Radiation High: {stationInfo?.solarRadiationHigh}</p>
-              <p>UV High: {stationInfo?.uvHigh}</p>
-              <p>Average Wind Direction: {stationInfo?.winddirAvg}°</p>
-          </div>
-          <div class="weather-group">
-            <div class="weather-header">
-              <h4>Humidity</h4>
-            </div>
-              <p>High: {stationInfo?.humidityHigh}</p>
-              <p>Low: {stationInfo?.humidityLow}</p>
-              <p>Average: {stationInfo?.humidityAvg}</p>
-          </div>
-        </div>
       </div>
     );
   }

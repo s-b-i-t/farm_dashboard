@@ -2,7 +2,7 @@
 import React from 'react';
 import {parseDate} from './utility.js';
 
-const DisplayWeatherData = ({ weatherData }) =>{
+const DisplayWeatherData = ({ weatherData, stationInfo }) =>{
     return (
       <div> 
         <h1> Weather Data </h1>
@@ -59,14 +59,6 @@ const DisplayWeatherData = ({ weatherData }) =>{
             <p>Low: {weatherData?.heatindexLow}°C </p>
             <p>Average: {weatherData?.heatindexAvg}°C </p> 
           </div>
-          <div class="weather-group">
-            <div class="weather-header">
-              <h4>Pressure</h4>
-            </div>
-            <p>High: {weatherData?.pressureHigh} </p>
-            <p>Low: {weatherData?.pressureLow} </p>
-            <p>Average: {weatherData?.pressureAvg} </p>
-          </div>
           
         </div>
         <div class="weather-container">
@@ -76,6 +68,30 @@ const DisplayWeatherData = ({ weatherData }) =>{
             </div>
             <p>precipRate: {weatherData?.precipRate}</p>
             <p>precipTotal: {weatherData?.precipTotal}</p>
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Pressure</h4>
+            </div>
+            <p>High: {weatherData?.pressureHigh} </p>
+            <p>Low: {weatherData?.pressureLow} </p>
+            <p>Average: {weatherData?.pressureAvg} </p>
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Humidity</h4>
+            </div>
+              <p>High: {stationInfo?.humidityHigh}</p>
+              <p>Low: {stationInfo?.humidityLow}</p>
+              <p>Average: {stationInfo?.humidityAvg}</p>
+          </div>
+          <div class="weather-group">
+            <div class="weather-header">
+              <h4>Misc. Weather</h4>
+            </div>
+              <p>Solar Radiation High: {stationInfo?.solarRadiationHigh}</p>
+              <p>UV High: {stationInfo?.uvHigh}</p>
+              <p>Average Wind Direction: {stationInfo?.winddirAvg}°</p>
           </div>
         </div>
         

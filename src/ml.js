@@ -1,7 +1,8 @@
 //ml.js
 
 import React, { useState, useEffect, useRef } from "react";
-import { Line } from 'react-chartjs-2';
+//import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -86,7 +87,7 @@ const App = () => {
           )}
 
           {chartData && (
-            <Line
+            <Bar
               data={chartData}
               options={{
                 scales: {
