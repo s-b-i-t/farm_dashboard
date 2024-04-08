@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.css": "/farm_dashboard/static/css/main.bddaa0b0.css",
-    "main.js": "/farm_dashboard/static/js/main.beb7d7cb.js",
+    "main.css": "/farm_dashboard/static/css/main.6b7d6c43.css",
+    "main.js": "/farm_dashboard/static/js/main.fe2e030e.js",
+    "static/media/smiles.jpg": "/farm_dashboard/static/media/smiles.0d520f80ee22fdb7c553.jpg",
+    "static/media/flowerpots.jpg": "/farm_dashboard/static/media/flowerpots.5d2688883bce3a19e067.jpg",
+    "static/media/svsfbanner.jpg": "/farm_dashboard/static/media/svsfbanner.9027abe0d3162789d24f.jpg",
+    "static/media/springvalleylogo.jpg": "/farm_dashboard/static/media/springvalleylogo.17509e9b7e57a987b70b.jpg",
     "index.html": "/farm_dashboard/index.html",
-    "main.bddaa0b0.css.map": "/farm_dashboard/static/css/main.bddaa0b0.css.map",
-    "main.beb7d7cb.js.map": "/farm_dashboard/static/js/main.beb7d7cb.js.map"
+    "main.6b7d6c43.css.map": "/farm_dashboard/static/css/main.6b7d6c43.css.map",
+    "main.fe2e030e.js.map": "/farm_dashboard/static/js/main.fe2e030e.js.map"
   },
   "entrypoints": [
-    "static/css/main.bddaa0b0.css",
-    "static/js/main.beb7d7cb.js"
+    "static/css/main.6b7d6c43.css",
+    "static/js/main.fe2e030e.js"
   ]
 }
