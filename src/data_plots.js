@@ -13,10 +13,14 @@ const plotOptions = [
   { value: 'precipitation', label: 'Precipitation', unit: 'mm'},
 ];
 
+
+
 const DataPlots = ({ temperatures }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
+
+  console.log(temperatures)
 
   const getYAxisLabel = (plot) => {
     const option = plotOptions.find(option => option.value === plot);

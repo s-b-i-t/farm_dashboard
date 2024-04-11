@@ -10,7 +10,7 @@ const HomePage = () => {
       
       <h1>Home</h1>
 
-      <img src={image2} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
+      <img id='image' src={image2} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
       
       <div class="weather-container">
           <div class="weather-group">
@@ -33,7 +33,7 @@ const HomePage = () => {
       </div>
 
 
-        <img src={image4} alt="Farmers with Flowerpots" class="image-tile"></img>
+        <img id='image' src={image4} alt="Farmers with Flowerpots" class="image-tile"></img>
 
       
       <div class="weather-container">
@@ -63,7 +63,7 @@ const HomePage = () => {
           </div>
       </div>
 
-      <img src={image1} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
+      <img id='image' src={image1} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
 
       <br></br>
 
