@@ -29,17 +29,17 @@ const DisplayWeatherData = ({ weatherData, stationInfo }) =>{
             <div class="weather-header">
               <h4>Wind Speed</h4>
             </div>
-            <p>High: {checkUndefined(weatherData?.windspeedHigh,"mph")}</p>
-            <p>Low: {checkUndefined(weatherData?.windspeedLow,"mph")} </p> 
-            <p>Average: {checkUndefined(weatherData?.windspeedAvg,"mph")} </p> 
+            <p>High: {checkUndefined(weatherData?.windspeedHigh,"km/h")}</p>
+            <p>Low: {checkUndefined(weatherData?.windspeedLow,"km/h")} </p> 
+            <p>Average: {checkUndefined(weatherData?.windspeedAvg,"km/h")} </p> 
           </div>
           <div class="weather-group">
             <div class="weather-header">
               <h4>Wind Gust</h4>
             </div>
-            <p>High: {checkUndefined(weatherData?.windgustHigh,"mph")} </p> 
-            <p>Low: {checkUndefined(weatherData?.windgustLow,"mph")} </p> 
-            <p>Average: {checkUndefined(weatherData?.windgustAvg,"mph")} </p> 
+            <p>High: {checkUndefined(weatherData?.windgustHigh,"km/h")} </p> 
+            <p>Low: {checkUndefined(weatherData?.windgustLow,"km/h")} </p> 
+            <p>Average: {checkUndefined(weatherData?.windgustAvg,"km/h")} </p> 
           </div>
           <div class="weather-group">
             <div class="weather-header">
@@ -72,16 +72,16 @@ const DisplayWeatherData = ({ weatherData, stationInfo }) =>{
             <div class="weather-header">
               <h4>Precipitation</h4>
             </div>
-            <p>precipRate: {checkUndefined(weatherData?.precipRate,"in/hr")}</p>
-            <p>precipTotal: {checkUndefined(weatherData?.precipTotal,"in")}</p>
+            <p>precipRate: {checkUndefined(weatherData?.precipRate,"mm/hr")}</p>
+            <p>precipTotal: {checkUndefined(weatherData?.precipTotal,"mm")}</p>
           </div>
           <div class="weather-group">
             <div class="weather-header">
               <h4>Pressure</h4>
             </div>
-            <p>High: {checkUndefined(weatherData?.pressureHigh,"mb")} </p>
-            <p>Low: {checkUndefined(weatherData?.pressureLow,"mb")} </p>
-            <p>Average: {checkUndefined(weatherData?.pressureAvg,"mb")} </p>
+            <p>High: {checkUndefined(weatherData?.pressureHigh,"hPa")} </p>
+            <p>Low: {checkUndefined(weatherData?.pressureLow,"hPa")} </p>
+            <p>Average: {checkUndefined(weatherData?.pressureAvg,"hPa")} </p>
           </div>
           <div class="weather-group">
             <div class="weather-header">
