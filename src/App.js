@@ -47,7 +47,8 @@ const App = () => {
       
         // here we use our usestate setters for the first response, which is the current day
         setWeatherData(data[0].observations[0]?.metric);
-  
+        setStationInfo(data[0].observations[0]);
+        
         // Process the responses to fit the expected structure for temperatures
         const metrics = Array.from({ length: 23 }, () => []); // 23 metrics
         data.forEach((response) => {
@@ -61,7 +62,6 @@ const App = () => {
   
         // Flatten the metrics to fit the expected structure for temperatures
         setTempratures(metrics.map((metric) => metric.map((value) => value ?? null)));
-        setStationInfo(data[0].observations[0]);
 
       } catch (error) {
         console.error("Failed to fetch weather data", error);
@@ -75,6 +75,8 @@ const App = () => {
   const stationInfoRef = useRef(null);
   const weatherDataRef = useRef(null);
   const ApiRef = useRef(null);
+
+  console.log(temperatures)
 
 
 
