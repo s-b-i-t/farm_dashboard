@@ -1,6 +1,6 @@
 //home.js
 import image1 from './images/springvalleylogo.jpg'
-import image2 from './images/svsfbanner.jpg'
+import image2 from './images/wheelbarrow.jpg'
 import image3 from './images/smiles.jpg'
 import image4 from './images/flowerpots.jpg'
 
@@ -63,7 +63,7 @@ const HomePage = () => {
           </div>
       </div>
 
-      <img id='image' src={image1} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
+      <img id='image' src={image3} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
 
       <br></br>
 

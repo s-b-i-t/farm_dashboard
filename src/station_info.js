@@ -1,6 +1,8 @@
 //station_info.js
 import React from 'react';
 
+import image5 from './images/station.png'
+
 const DisplayStationInfo = ({stationInfo}) => {
     return (
       <div className="container">
@@ -28,6 +30,8 @@ const DisplayStationInfo = ({stationInfo}) => {
               <p>Longitude: {stationInfo?.lon}</p>
           </div>
         </div>
+
+        <img id='image' src={image5} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
 
       </div>
     );
