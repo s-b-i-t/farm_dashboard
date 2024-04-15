@@ -28,6 +28,25 @@ const DataPlots = ({ temperatures }) => {
   };
 
   useEffect(() => {
+
+    const handleResize = () => {
+      chartInstanceRef.current?.resize();
+    };
+      
+    // Detect zoom changes specifically (doesnt work as intended)
+    let lastWidth = window.innerWidth;
+    const handleZoom = () => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== lastWidth) {
+        chartInstanceRef.current?.resize();
+        lastWidth = currentWidth;
+      }
+    };
+
+    window.addEventListener('resize', handleZoom);
+    window.addEventListener('resize', handleResize);
+
+
     if (temperatures.length > 0 && temperatures[0].length > 0) {
       const today = new Date();
       const labels = Array.from({ length: temperatures[0].length }, (_, index) => {
@@ -48,6 +67,7 @@ const DataPlots = ({ temperatures }) => {
           datasets: getDatasetsForPlot(selectedPlot, temperatures),
         },
         options: {
+          responsive: true,
           scales: {
             y: {
               beginAtZero: true,
@@ -73,6 +93,9 @@ const DataPlots = ({ temperatures }) => {
       if (chartInstanceRef.current) {
         chartInstanceRef.current.destroy();
       }
+      window.removeEventListener('resize', handleZoom);
+      window.removeEventListener('resize', handleResize);
+
     };
   }, [temperatures, selectedPlot]);
 

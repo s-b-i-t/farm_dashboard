@@ -28,48 +28,52 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const api_key = process.env.REACT_APP_API_KEY;
-        const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
-        const STATION_ID = 'KCTSTORR28';
-        const promises = [];
-  
-        for (let i = 1; i <= 30; i++) { // for 30 days, including today
-          const date = getPreviousTemps(i - 1); // adjust to get the correct dates
-          const api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${date}&apiKey=${api_key}`;
-          promises.push(fetch(api_url));
-        }
-  
-        // promises returns an array of promises
-        const responses = await Promise.all(promises);
+          const api_key = process.env.REACT_APP_API_KEY;
+          const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
+          const STATION_ID = 'KCTSTORR28';
+          const promises = [];
 
-        // promise called on each response to get the json data
-        const data = (await Promise.all(responses.map(res => res.json()))).reverse(); // Reverse to start from the oldest to most recent
-      
-        // here we use our usestate setters for the first response, which is the current day
-        setWeatherData(data[0].observations[0]?.metric);
-        setStationInfo(data[0].observations[0]);
-        
-        // Process the responses to fit the expected structure for temperatures
-        const metrics = Array.from({ length: 23 }, () => []); // 23 metrics
-        data.forEach((response) => {
-          const obs = response.observations[0]?.metric;
-          if (obs) {
-            Object.keys(obs).forEach((key, index) => {
-              metrics[index].push(obs[key]);
-            });
+          let num_days = 30;
+
+          for (let i = 1; i <= num_days; i++) { // for 30 days, including today
+              const date = getPreviousTemps(i - 1); // adjust to get the correct dates
+              const api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${date}&apiKey=${api_key}`;
+              promises.push(fetch(api_url).then(res => res.json()));
           }
-        });
-  
-        // Flatten the metrics to fit the expected structure for temperatures
-        setTempratures(metrics.map((metric) => metric.map((value) => value ?? null)));
+
+          const data = await Promise.all(promises);
+          const reversedData = data.reverse(); // Reverse to start from the oldest to most recent
+
+          // Pre-fill the metrics with null values for each day
+          const metrics = Array.from({ length: 23 }, () => Array(30).fill(null)); // Assuming 23 metrics
+
+          reversedData.forEach((response, dayIndex) => {
+              const obs = response.observations[0]?.metric;
+              if (obs) {
+                  Object.keys(obs).forEach((key, metricIndex) => {
+                      if (obs[key] !== undefined) {
+                          metrics[metricIndex][dayIndex] = obs[key];
+                      }
+                  });
+              }
+          });
+
+          setTempratures(metrics);
+          if (reversedData[0] && reversedData[0].observations && reversedData[0].observations[0]) {
+              setWeatherData(reversedData[0].observations[0].metric);
+          }
+
+          setWeatherData(data[num_days - 1].observations[0].metric)
+          setStationInfo(data[num_days - 1].observations[0]);
+          
 
       } catch (error) {
-        console.error("Failed to fetch weather data", error);
+          console.error("Failed to fetch weather data", error);
       }
-    };
-  
-    fetchData();
-  }, []);
+  };
+
+  fetchData();
+}, []);
 
   //navbar scrolling (prolly gonna get rid of this)
   const stationInfoRef = useRef(null);
