@@ -19,8 +19,9 @@ const DataPlots = ({ temperatures }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
+  const [isHovered, setIsHovered] = useState(false);
 
-  console.log(temperatures)
+  // console.log(temperatures)
 
   const getYAxisLabel = (plot) => {
     const option = plotOptions.find(option => option.value === plot);
@@ -28,6 +29,25 @@ const DataPlots = ({ temperatures }) => {
   };
 
   useEffect(() => {
+
+    const handleResize = () => {
+      chartInstanceRef.current?.resize();
+    };
+      
+    // Detect zoom changes specifically (doesnt work as intended)
+    let lastWidth = window.innerWidth;
+    const handleZoom = () => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== lastWidth) {
+        chartInstanceRef.current?.resize();
+        lastWidth = currentWidth;
+      }
+    };
+
+    window.addEventListener('resize', handleZoom);
+    window.addEventListener('resize', handleResize);
+
+
     if (temperatures.length > 0 && temperatures[0].length > 0) {
       const today = new Date();
       const labels = Array.from({ length: temperatures[0].length }, (_, index) => {
@@ -48,6 +68,7 @@ const DataPlots = ({ temperatures }) => {
           datasets: getDatasetsForPlot(selectedPlot, temperatures),
         },
         options: {
+          responsive: true,
           scales: {
             y: {
               beginAtZero: true,
@@ -73,6 +94,9 @@ const DataPlots = ({ temperatures }) => {
       if (chartInstanceRef.current) {
         chartInstanceRef.current.destroy();
       }
+      window.removeEventListener('resize', handleZoom);
+      window.removeEventListener('resize', handleResize);
+
     };
   }, [temperatures, selectedPlot]);
 
@@ -111,6 +135,14 @@ const DataPlots = ({ temperatures }) => {
   return (
     <>
       <h1> Previous 30 Day Data </h1>
+
+      
+      <div className="info-icon" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        ⓘ
+        {isHovered && <div className="tooltip">Empty data points indicate the weather station was offline or not returning that specific metric for that day </div>}
+      </div>
+
+
       <select id="plotSelect" value={selectedPlot} onChange={e => setSelectedPlot(e.target.value)}>
         {plotOptions.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>

@@ -1,5 +1,8 @@
 //station_info.js
 import React from 'react';
+import station1 from './images/station1.png'
+import station2 from './images/station2.png'
+import station3 from './images/station3.png'
 
 import image5 from './images/station.png'
 
@@ -29,6 +32,14 @@ const DisplayStationInfo = ({stationInfo}) => {
               <p>Latitude: {stationInfo?.lat}</p>
               <p>Longitude: {stationInfo?.lon}</p>
           </div>
+        </div>
+        <div>         
+        </div>
+
+        <div class="image-container">
+          <img id='station1' src={station1} alt='Station 1' class="image-tile"></img> 
+          <img id='station2' src={station2} alt='Station 2' class="image-tile"></img>
+          <img id='station3' src={station3} alt='Station 3' class="image-tile"></img>
         </div>
 
         <img id='image' src={image5} alt="Spring Valley Student Farm Mission" class="image-tile"></img>

@@ -3,6 +3,9 @@ import image1 from './images/springvalleylogo.jpg'
 import image2 from './images/wheelbarrow.jpg'
 import image3 from './images/smiles.jpg'
 import image4 from './images/flowerpots.jpg'
+import React, { useState } from 'react';
+
+
 
 const HomePage = () => {
   return (
