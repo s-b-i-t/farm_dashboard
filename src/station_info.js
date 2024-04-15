@@ -38,11 +38,11 @@ const DisplayStationInfo = ({stationInfo}) => {
 
         <div class="image-container">
           <img id='station1' src={station1} alt='Station 1' class="image-tile"></img> 
-          <img id='station2' src={station2} alt='Station 2' class="image-tile"></img>
           <img id='station3' src={station3} alt='Station 3' class="image-tile"></img>
+          <img id='station2' src={station2} alt='Station 2' class="image-tile"></img>
         </div>
 
-        <img id='image' src={image5} alt="Spring Valley Student Farm Mission" class="image-tile"></img>
+        {/* <img id='image' src={image5} alt="Spring Valley Student Farm Mission" class="image-tile"></img> */}
 
       </div>
     );
