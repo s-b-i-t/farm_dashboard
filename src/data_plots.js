@@ -19,8 +19,9 @@ const DataPlots = ({ temperatures }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
   const [selectedPlot, setSelectedPlot] = useState(plotOptions[0].value);
+  const [isHovered, setIsHovered] = useState(false);
 
-  console.log(temperatures)
+  // console.log(temperatures)
 
   const getYAxisLabel = (plot) => {
     const option = plotOptions.find(option => option.value === plot);
@@ -134,6 +135,14 @@ const DataPlots = ({ temperatures }) => {
   return (
     <>
       <h1> Previous 30 Day Data </h1>
+
+      
+      <div className="info-icon" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        ⓘ
+        {isHovered && <div className="tooltip">Empty data points indicate the weather station was offline or not returning that specific metric for that day </div>}
+      </div>
+
+
       <select id="plotSelect" value={selectedPlot} onChange={e => setSelectedPlot(e.target.value)}>
         {plotOptions.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>

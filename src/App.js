@@ -80,7 +80,7 @@ const App = () => {
   const weatherDataRef = useRef(null);
   const ApiRef = useRef(null);
 
-  console.log(temperatures)
+  // console.log(temperatures)
 
 
 
