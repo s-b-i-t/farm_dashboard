@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/farm_dashboard/static/css/main.6b7d6c43.css",
-    "main.js": "/farm_dashboard/static/js/main.fe2e030e.js",
+    "main.css": "/farm_dashboard/static/css/main.469fb643.css",
+    "main.js": "/farm_dashboard/static/js/main.13344657.js",
     "static/media/smiles.jpg": "/farm_dashboard/static/media/smiles.0d520f80ee22fdb7c553.jpg",
+    "static/media/station1.png": "/farm_dashboard/static/media/station1.f8d99de6b2c91b1b2378.png",
     "static/media/flowerpots.jpg": "/farm_dashboard/static/media/flowerpots.5d2688883bce3a19e067.jpg",
+    "static/media/station3.png": "/farm_dashboard/static/media/station3.c2cfd12c68fcd79834d1.png",
+    "static/media/station2.png": "/farm_dashboard/static/media/station2.ed03bc1aad49d6c04b65.png",
     "static/media/svsfbanner.jpg": "/farm_dashboard/static/media/svsfbanner.9027abe0d3162789d24f.jpg",
     "static/media/springvalleylogo.jpg": "/farm_dashboard/static/media/springvalleylogo.17509e9b7e57a987b70b.jpg",
     "index.html": "/farm_dashboard/index.html",
-    "main.6b7d6c43.css.map": "/farm_dashboard/static/css/main.6b7d6c43.css.map",
-    "main.fe2e030e.js.map": "/farm_dashboard/static/js/main.fe2e030e.js.map"
+    "main.469fb643.css.map": "/farm_dashboard/static/css/main.469fb643.css.map",
+    "main.13344657.js.map": "/farm_dashboard/static/js/main.13344657.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b7d6c43.css",
-    "static/js/main.fe2e030e.js"
+    "static/css/main.469fb643.css",
+    "static/js/main.13344657.js"
   ]
 }
