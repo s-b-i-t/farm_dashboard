@@ -28,15 +28,24 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const api_key = process.env.REACT_APP_API_KEY;
+
+         let api_key = "1b2a5cb281f64582aa5cb281f6d582ac";
+         // let current_date = getCurrentDateString();
+         // const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
+         // const STATION_ID = 'KCTSTORR28';
+        //let api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${current_date}&apiKey=${api_key}`;
+
+         // const api_key = process.env.REACT_APP_API_KEY;
           const BASE_URL = 'https://api.weather.com/v2/pws/history/daily';
           const STATION_ID = 'KCTSTORR28';
+
           const promises = [];
 
           let num_days = 30;
 
           for (let i = 1; i <= num_days; i++) { // for 30 days, including today
               const date = getPreviousTemps(i - 1); // adjust to get the correct dates
+
               const api_url = `${BASE_URL}?stationId=${STATION_ID}&format=json&units=m&date=${date}&apiKey=${api_key}`;
               promises.push(fetch(api_url).then(res => res.json()));
           }

@@ -48,7 +48,7 @@ const DataPlots = ({ temperatures }) => {
     window.addEventListener('resize', handleResize);
 
 
-    if (temperatures.length > 0 && temperatures[0].length > 0) {
+    if (temperatures && temperatures.length > 0 && temperatures[0].length > 0) {
       const today = new Date();
       const labels = Array.from({ length: temperatures[0].length }, (_, index) => {
         const date = new Date(today);
