@@ -8,4 +8,4 @@ This repository contains the senior design project for creating a dashboard for 
 - **Data Visualization**: Chart.js
 - **API Integration**: OpenWeatherMap API
 
-You can explore the project [here](https://github.com/s-b-i-t/farm_dashboard).
+You can explore the project [here](https://s-b-i-t.github.io/farm_dashboard/).
